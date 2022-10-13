@@ -133,4 +133,6 @@ public class TraderQuestion {
                 .min(comparing(Transaction::getValue));
         System.out.println(min.get());
     }
+    
+
 }

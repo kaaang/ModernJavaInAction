@@ -1,8 +1,8 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.*;
 
@@ -165,6 +165,33 @@ class Stream {
                 .map(dish -> 1)
                 .reduce(0, (a, b) -> a + b);
         System.out.println(reduce);
+    }
+
+
+//    리듀싱 요약
+    @Test
+    void reducing2(){
+        Long collect = menu.stream().collect(counting());
+        System.out.println(collect);
+    }
+
+    @Test
+    void r3(){
+        long count = menu.stream().count();
+        System.out.println(count);
+    }
+
+    @Test
+    void r4(){
+        Comparator<Dish> dishComparator = Comparator.comparingInt(Dish::getCalories);
+        Optional<Dish> collect = menu.stream().collect(maxBy(dishComparator));
+        System.out.println(collect);
+    }
+
+    @Test
+    void g1(){
+        Map<Dish.Type, List<Dish>> collect = menu.stream().collect(groupingBy(Dish::getType));
+        System.out.println(collect);
     }
 
 }
